@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1084377237392",
+    "project_id": "sample-epin",
+    "storage_bucket": "sample-epin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084377237392:android:1195e2b63ae13267299515",
+        "android_client_info": {
+          "package_name": "com.mycompany.ffenterpriseecomm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADcR9do7tMc90g5u869m34HzU1oELlNlg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
