@@ -27,3 +27,12 @@ export '/pages/checkout_full_page/checkout_full_page_widget.dart'
 export '/archive/checkout_copy/checkout_copy_widget.dart'
     show CheckoutCopyWidget;
 export '/archive/create_item/create_item_widget.dart' show CreateItemWidget;
+export '/pages/categorylistingmain/categorylistingmain_widget.dart'
+    show CategorylistingmainWidget;
+export '/pages/productdummy/productdummy_widget.dart' show ProductdummyWidget;
+export '/pages/navigatefromdummy/navigatefromdummy_widget.dart'
+    show NavigatefromdummyWidget;
+export '/pages/categorylistingdummy/categorylistingdummy_widget.dart'
+    show CategorylistingdummyWidget;
+export '/pages/sub_pages/product_details_copy/product_details_copy_widget.dart'
+    show ProductDetailsCopyWidget;

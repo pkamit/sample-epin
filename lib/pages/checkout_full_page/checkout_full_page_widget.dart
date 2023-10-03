@@ -120,7 +120,9 @@ class _CheckoutFullPageWidgetState extends State<CheckoutFullPageWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -429,24 +431,27 @@ class _CheckoutFullPageWidgetState extends State<CheckoutFullPageWidget>
 
                                                                         await currentUserReference!
                                                                             .update({
-                                                                          'addresses':
-                                                                              FieldValue.arrayUnion([
-                                                                            getAddressFirestoreData(
-                                                                              updateAddressStruct(
-                                                                                AddressStruct(
-                                                                                  defaultAddress: true,
-                                                                                  addressName: _model.addAddressBaseModel.addressController.text,
-                                                                                  address: _model.addAddressBaseModel.addressController.text,
-                                                                                  address2: _model.addAddressBaseModel.clonableURLController.text,
-                                                                                  city: _model.addAddressBaseModel.cityController.text,
-                                                                                  state: _model.addAddressBaseModel.stateController.text,
-                                                                                  postalCode: int.tryParse(_model.addAddressBaseModel.zipController.text),
-                                                                                ),
-                                                                                clearUnsetFields: false,
-                                                                              ),
-                                                                              true,
-                                                                            )
-                                                                          ]),
+                                                                          ...mapToFirestore(
+                                                                            {
+                                                                              'addresses': FieldValue.arrayUnion([
+                                                                                getAddressFirestoreData(
+                                                                                  updateAddressStruct(
+                                                                                    AddressStruct(
+                                                                                      defaultAddress: true,
+                                                                                      addressName: _model.addAddressBaseModel.addressController.text,
+                                                                                      address: _model.addAddressBaseModel.addressController.text,
+                                                                                      address2: _model.addAddressBaseModel.clonableURLController.text,
+                                                                                      city: _model.addAddressBaseModel.cityController.text,
+                                                                                      state: _model.addAddressBaseModel.stateController.text,
+                                                                                      postalCode: int.tryParse(_model.addAddressBaseModel.zipController.text),
+                                                                                    ),
+                                                                                    clearUnsetFields: false,
+                                                                                  ),
+                                                                                  true,
+                                                                                )
+                                                                              ]),
+                                                                            },
+                                                                          ),
                                                                         });
                                                                         setState(
                                                                             () {
@@ -520,7 +525,7 @@ class _CheckoutFullPageWidgetState extends State<CheckoutFullPageWidget>
                                                                                     return Material(
                                                                                       color: Colors.transparent,
                                                                                       child: GestureDetector(
-                                                                                        onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+                                                                                        onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
                                                                                         child: ModalAddAddressWidget(),
                                                                                       ),
                                                                                     );
@@ -1725,11 +1730,17 @@ class _CheckoutFullPageWidgetState extends State<CheckoutFullPageWidget>
                                                       create: true,
                                                     ),
                                                   ),
-                                                  'itemsOrdered': FFAppState()
-                                                      .cartItems
-                                                      .map((e) => e.itemRef)
-                                                      .withoutNulls
-                                                      .toList(),
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'itemsOrdered':
+                                                          FFAppState()
+                                                              .cartItems
+                                                              .map((e) =>
+                                                                  e.itemRef)
+                                                              .withoutNulls
+                                                              .toList(),
+                                                    },
+                                                  ),
                                                 });
 
                                                 context.pushNamed(
@@ -1842,10 +1853,16 @@ class _CheckoutFullPageWidgetState extends State<CheckoutFullPageWidget>
                                                   context: context,
                                                   builder: (context) {
                                                     return GestureDetector(
-                                                      onTap: () => FocusScope
-                                                              .of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode),
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
                                                       child: Padding(
                                                         padding: MediaQuery
                                                             .viewInsetsOf(

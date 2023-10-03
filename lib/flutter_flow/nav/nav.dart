@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 
@@ -78,14 +79,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? NavBarPage()
+          : CategorylistingdummyWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? NavBarPage()
+              : CategorylistingdummyWidget(),
         ),
         FFRoute(
           name: 'mainHomePage',
@@ -189,6 +192,36 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'create_Item',
           path: '/createItem',
           builder: (context, params) => CreateItemWidget(),
+        ),
+        FFRoute(
+          name: 'categorylistingmain',
+          path: '/categorylistingmain',
+          builder: (context, params) => CategorylistingmainWidget(),
+        ),
+        FFRoute(
+          name: 'productdummy',
+          path: '/productdummy',
+          builder: (context, params) => ProductdummyWidget(),
+        ),
+        FFRoute(
+          name: 'navigatefromdummy',
+          path: '/navigatefromdummy',
+          builder: (context, params) => NavigatefromdummyWidget(
+            id: params.getParam('id', ParamType.String),
+            product: params.getParam('product', ParamType.JSON),
+          ),
+        ),
+        FFRoute(
+          name: 'categorylistingdummy',
+          path: '/categorylistingdummy',
+          builder: (context, params) => CategorylistingdummyWidget(),
+        ),
+        FFRoute(
+          name: 'productDetailsCopy',
+          path: '/productDetailsCopy',
+          builder: (context, params) => ProductDetailsCopyWidget(
+            productRef: params.getParam('productRef', ParamType.JSON),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -355,7 +388,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/loginPage';
+            return '/categorylistingdummy';
           }
           return null;
         },
@@ -414,4 +447,24 @@ class TransitionInfo {
   final Alignment? alignment;
 
   static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+}
+
+class RootPageContext {
+  const RootPageContext(this.isRootPage, [this.errorRoute]);
+  final bool isRootPage;
+  final String? errorRoute;
+
+  static bool isInactiveRootPage(BuildContext context) {
+    final rootPageContext = context.read<RootPageContext?>();
+    final isRootPage = rootPageContext?.isRootPage ?? false;
+    final location = GoRouter.of(context).location;
+    return isRootPage &&
+        location != '/' &&
+        location != rootPageContext?.errorRoute;
+  }
+
+  static Widget wrap(Widget child, {String? errorRoute}) => Provider.value(
+        value: RootPageContext(true, errorRoute),
+        child: child,
+      );
 }

@@ -46,16 +46,6 @@ class SellersRecord extends FirestoreRecord {
   DocumentReference? get userRef => _userRef;
   bool hasUserRef() => _userRef != null;
 
-  // "uid" field.
-  String? _uid;
-  String get uid => _uid ?? '';
-  bool hasUid() => _uid != null;
-
-  // "created_time" field.
-  DateTime? _createdTime;
-  DateTime? get createdTime => _createdTime;
-  bool hasCreatedTime() => _createdTime != null;
-
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -63,8 +53,6 @@ class SellersRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _createdAt = snapshotData['created_at'] as DateTime?;
     _userRef = snapshotData['userRef'] as DocumentReference?;
-    _uid = snapshotData['uid'] as String?;
-    _createdTime = snapshotData['created_time'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -108,8 +96,6 @@ Map<String, dynamic> createSellersRecordData({
   String? phoneNumber,
   DateTime? createdAt,
   DocumentReference? userRef,
-  String? uid,
-  DateTime? createdTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -119,8 +105,6 @@ Map<String, dynamic> createSellersRecordData({
       'phone_number': phoneNumber,
       'created_at': createdAt,
       'userRef': userRef,
-      'uid': uid,
-      'created_time': createdTime,
     }.withoutNulls,
   );
 
@@ -137,9 +121,7 @@ class SellersRecordDocumentEquality implements Equality<SellersRecord> {
         e1?.photoUrl == e2?.photoUrl &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.createdAt == e2?.createdAt &&
-        e1?.userRef == e2?.userRef &&
-        e1?.uid == e2?.uid &&
-        e1?.createdTime == e2?.createdTime;
+        e1?.userRef == e2?.userRef;
   }
 
   @override
@@ -149,9 +131,7 @@ class SellersRecordDocumentEquality implements Equality<SellersRecord> {
         e?.photoUrl,
         e?.phoneNumber,
         e?.createdAt,
-        e?.userRef,
-        e?.uid,
-        e?.createdTime
+        e?.userRef
       ]);
 
   @override

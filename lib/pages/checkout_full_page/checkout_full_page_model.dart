@@ -14,6 +14,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'checkout_full_page_widget.dart' show CheckoutFullPageWidget;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable/expandable.dart';
@@ -24,7 +25,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class CheckoutFullPageModel extends FlutterFlowModel {
+class CheckoutFullPageModel extends FlutterFlowModel<CheckoutFullPageWidget> {
   ///  Local state fields for this page.
 
   int stepNumber = 1;

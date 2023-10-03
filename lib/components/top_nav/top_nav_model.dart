@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:badges/badges.dart' as badges;
+import 'top_nav_widget.dart' show TopNavWidget;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -18,7 +19,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class TopNavModel extends FlutterFlowModel {
+class TopNavModel extends FlutterFlowModel<TopNavWidget> {
   ///  State fields for stateful widgets in this component.
 
   // Model for mainLogo component.

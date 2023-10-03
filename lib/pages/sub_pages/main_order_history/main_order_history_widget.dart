@@ -136,7 +136,9 @@ class _MainOrderHistoryWidgetState extends State<MainOrderHistoryWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -213,8 +215,10 @@ class _MainOrderHistoryWidgetState extends State<MainOrderHistoryWidget>
                           StreamBuilder<List<OrdersRecord>>(
                             stream: queryOrdersRecord(
                               queryBuilder: (ordersRecord) => ordersRecord
-                                  .where('userPurchased',
-                                      isEqualTo: currentUserReference)
+                                  .where(
+                                    'userPurchased',
+                                    isEqualTo: currentUserReference,
+                                  )
                                   .orderBy('created_at', descending: true),
                             ),
                             builder: (context, snapshot) {
@@ -398,11 +402,16 @@ class _MainOrderHistoryWidgetState extends State<MainOrderHistoryWidget>
                                                                     .transparent,
                                                                 child:
                                                                     GestureDetector(
-                                                                  onTap: () => FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode),
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
                                                                   child:
                                                                       DropdownMenuWidget(
                                                                     orderRef:

@@ -61,31 +61,6 @@ class ProductsRecord extends FirestoreRecord {
   DocumentReference? get userRef => _userRef;
   bool hasUserRef() => _userRef != null;
 
-  // "email" field.
-  String? _email;
-  String get email => _email ?? '';
-  bool hasEmail() => _email != null;
-
-  // "display_name" field.
-  String? _displayName;
-  String get displayName => _displayName ?? '';
-  bool hasDisplayName() => _displayName != null;
-
-  // "uid" field.
-  String? _uid;
-  String get uid => _uid ?? '';
-  bool hasUid() => _uid != null;
-
-  // "created_time" field.
-  DateTime? _createdTime;
-  DateTime? get createdTime => _createdTime;
-  bool hasCreatedTime() => _createdTime != null;
-
-  // "phone_number" field.
-  String? _phoneNumber;
-  String get phoneNumber => _phoneNumber ?? '';
-  bool hasPhoneNumber() => _phoneNumber != null;
-
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
@@ -96,11 +71,6 @@ class ProductsRecord extends FirestoreRecord {
     _sellerRef = snapshotData['seller_ref'] as DocumentReference?;
     _photoUrl = snapshotData['photo_url'] as String?;
     _userRef = snapshotData['userRef'] as DocumentReference?;
-    _email = snapshotData['email'] as String?;
-    _displayName = snapshotData['display_name'] as String?;
-    _uid = snapshotData['uid'] as String?;
-    _createdTime = snapshotData['created_time'] as DateTime?;
-    _phoneNumber = snapshotData['phone_number'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -147,11 +117,6 @@ Map<String, dynamic> createProductsRecordData({
   DocumentReference? sellerRef,
   String? photoUrl,
   DocumentReference? userRef,
-  String? email,
-  String? displayName,
-  String? uid,
-  DateTime? createdTime,
-  String? phoneNumber,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -164,11 +129,6 @@ Map<String, dynamic> createProductsRecordData({
       'seller_ref': sellerRef,
       'photo_url': photoUrl,
       'userRef': userRef,
-      'email': email,
-      'display_name': displayName,
-      'uid': uid,
-      'created_time': createdTime,
-      'phone_number': phoneNumber,
     }.withoutNulls,
   );
 
@@ -188,12 +148,7 @@ class ProductsRecordDocumentEquality implements Equality<ProductsRecord> {
         e1?.category == e2?.category &&
         e1?.sellerRef == e2?.sellerRef &&
         e1?.photoUrl == e2?.photoUrl &&
-        e1?.userRef == e2?.userRef &&
-        e1?.email == e2?.email &&
-        e1?.displayName == e2?.displayName &&
-        e1?.uid == e2?.uid &&
-        e1?.createdTime == e2?.createdTime &&
-        e1?.phoneNumber == e2?.phoneNumber;
+        e1?.userRef == e2?.userRef;
   }
 
   @override
@@ -206,12 +161,7 @@ class ProductsRecordDocumentEquality implements Equality<ProductsRecord> {
         e?.category,
         e?.sellerRef,
         e?.photoUrl,
-        e?.userRef,
-        e?.email,
-        e?.displayName,
-        e?.uid,
-        e?.createdTime,
-        e?.phoneNumber
+        e?.userRef
       ]);
 
   @override

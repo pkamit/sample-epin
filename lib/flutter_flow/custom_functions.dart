@@ -20,3 +20,33 @@ double? priceSummary(List<double>? prices) {
   }
   return prices.reduce((value, element) => value + element);
 }
+
+String? widgetStatelog(List<String>? widgetState) {
+  return widgetState.toString();
+}
+
+bool? isNull(List<String>? widgetState) {
+  if (widgetState == null || widgetState.isEmpty) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool? isnullstring(String? category) {
+  if (category == null || category.isEmpty) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+String? categoryStateLog(String? categorystate) {
+  return categorystate.toString();
+}
+
+String? changebackgroundcolor() {
+  String _colorContainer = "#6F61EF";
+
+  return _colorContainer;
+}

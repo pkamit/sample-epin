@@ -223,8 +223,12 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
             sentAt: getCurrentTimestamp,
             productRef: widget.productRef?.reference,
           ),
-          'userList': [widget.productRef?.userRef],
-          'unreadByUser': [widget.productRef?.userRef],
+          ...mapToFirestore(
+            {
+              'userList': [widget.productRef?.userRef],
+              'unreadByUser': [widget.productRef?.userRef],
+            },
+          ),
         });
       } else {
         return;
@@ -246,7 +250,9 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -1231,10 +1237,13 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                                                   builder:
                                                                       (context) {
                                                                     return GestureDetector(
-                                                                      onTap: () => FocusScope.of(
-                                                                              context)
-                                                                          .requestFocus(
-                                                                              _model.unfocusNode),
+                                                                      onTap: () => _model
+                                                                              .unfocusNode
+                                                                              .canRequestFocus
+                                                                          ? FocusScope.of(context).requestFocus(_model
+                                                                              .unfocusNode)
+                                                                          : FocusScope.of(context)
+                                                                              .unfocus(),
                                                                       child:
                                                                           Padding(
                                                                         padding:
@@ -1335,10 +1344,11 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                                               ReviewsRecord
                                                                   .collection
                                                                   .where(
-                                                                      'productRef',
-                                                                      isEqualTo: widget
-                                                                          .productRef
-                                                                          ?.reference)
+                                                                    'productRef',
+                                                                    isEqualTo: widget
+                                                                        .productRef
+                                                                        ?.reference,
+                                                                  )
                                                                   .orderBy(
                                                                       'dateCreated',
                                                                       descending:

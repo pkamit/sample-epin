@@ -59,15 +59,7 @@ class _TopNavWidgetState extends State<TopNavWidget>
     _model = createModel(context, () => TopNavModel());
 
     // On component load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if ((Theme.of(context).brightness == Brightness.dark) == true) {
-        if (animationsMap['containerOnActionTriggerAnimation'] != null) {
-          await animationsMap['containerOnActionTriggerAnimation']!
-              .controller
-              .reverse();
-        }
-      }
-    });
+    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -144,28 +136,7 @@ class _TopNavWidgetState extends State<TopNavWidget>
                     focusColor: Colors.transparent,
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    onTap: () async {
-                      if ((Theme.of(context).brightness == Brightness.light) ==
-                          true) {
-                        setDarkModeSetting(context, ThemeMode.dark);
-                        if (animationsMap[
-                                'containerOnActionTriggerAnimation'] !=
-                            null) {
-                          animationsMap['containerOnActionTriggerAnimation']!
-                              .controller
-                              .forward(from: 0.0);
-                        }
-                      } else {
-                        setDarkModeSetting(context, ThemeMode.light);
-                        if (animationsMap[
-                                'containerOnActionTriggerAnimation'] !=
-                            null) {
-                          animationsMap['containerOnActionTriggerAnimation']!
-                              .controller
-                              .reverse();
-                        }
-                      }
-                    },
+                    onTap: () async {},
                     child: Container(
                       width: 80.0,
                       height: 40.0,
@@ -324,8 +295,9 @@ class _TopNavWidgetState extends State<TopNavWidget>
                 child: FutureBuilder<int>(
                   future: queryActivityRecordCount(
                     queryBuilder: (activityRecord) => activityRecord.where(
-                        'unreadByUser',
-                        arrayContains: currentUserReference),
+                      'unreadByUser',
+                      arrayContains: currentUserReference,
+                    ),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.

@@ -146,31 +146,37 @@ class _ModalAddAddressWidgetState extends State<ModalAddAddressWidget> {
                               // addAddress_Account
 
                               await currentUserReference!.update({
-                                'addresses': FieldValue.arrayUnion([
-                                  getAddressFirestoreData(
-                                    updateAddressStruct(
-                                      AddressStruct(
-                                        defaultAddress: true,
-                                        addressName: _model.addAddressBaseModel
-                                            .addressController.text,
-                                        address: _model.addAddressBaseModel
-                                            .addressController.text,
-                                        address2: _model.addAddressBaseModel
-                                            .clonableURLController.text,
-                                        city: _model.addAddressBaseModel
-                                            .cityController.text,
-                                        state: _model.addAddressBaseModel
-                                            .stateController.text,
-                                        postalCode: int.tryParse(_model
-                                            .addAddressBaseModel
-                                            .zipController
-                                            .text),
-                                      ),
-                                      clearUnsetFields: false,
-                                    ),
-                                    true,
-                                  )
-                                ]),
+                                ...mapToFirestore(
+                                  {
+                                    'addresses': FieldValue.arrayUnion([
+                                      getAddressFirestoreData(
+                                        updateAddressStruct(
+                                          AddressStruct(
+                                            defaultAddress: true,
+                                            addressName: _model
+                                                .addAddressBaseModel
+                                                .addressController
+                                                .text,
+                                            address: _model.addAddressBaseModel
+                                                .addressController.text,
+                                            address2: _model.addAddressBaseModel
+                                                .clonableURLController.text,
+                                            city: _model.addAddressBaseModel
+                                                .cityController.text,
+                                            state: _model.addAddressBaseModel
+                                                .stateController.text,
+                                            postalCode: int.tryParse(_model
+                                                .addAddressBaseModel
+                                                .zipController
+                                                .text),
+                                          ),
+                                          clearUnsetFields: false,
+                                        ),
+                                        true,
+                                      )
+                                    ]),
+                                  },
+                                ),
                               });
                               Navigator.pop(context);
                             },

@@ -204,8 +204,10 @@ class _DropdownNotificationsWidgetState
                   child: StreamBuilder<List<ActivityRecord>>(
                     stream: queryActivityRecord(
                       queryBuilder: (activityRecord) => activityRecord
-                          .where('userList',
-                              arrayContains: currentUserReference)
+                          .where(
+                            'userList',
+                            arrayContains: currentUserReference,
+                          )
                           .orderBy('sentAt', descending: true),
                     ),
                     builder: (context, snapshot) {
@@ -254,8 +256,12 @@ class _DropdownNotificationsWidgetState
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 await listViewActivityRecord.reference.update({
-                                  'unreadByUser': FieldValue.arrayRemove(
-                                      [currentUserReference]),
+                                  ...mapToFirestore(
+                                    {
+                                      'unreadByUser': FieldValue.arrayRemove(
+                                          [currentUserReference]),
+                                    },
+                                  ),
                                 });
                               },
                               child: Container(

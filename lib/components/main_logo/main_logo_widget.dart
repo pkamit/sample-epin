@@ -52,9 +52,7 @@ class _MainLogoWidgetState extends State<MainLogoWidget> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Image.asset(
-          Theme.of(context).brightness == Brightness.dark
-              ? 'assets/images/shop_logo_light@4x.png'
-              : 'assets/images/shop_logo_dark@4x.png',
+          'assets/images/shop_logo_dark@4x.png',
           width: 170.0,
           height: 40.0,
           fit: BoxFit.fitWidth,

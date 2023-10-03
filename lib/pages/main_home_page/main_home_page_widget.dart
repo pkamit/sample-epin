@@ -205,7 +205,9 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -1472,9 +1474,13 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                           onPressed:
                                                                               () async {
                                                                             await currentUserReference!.update({
-                                                                              'favoriteItems': FieldValue.arrayUnion([
-                                                                                largeDesktopProductsRecord.reference
-                                                                              ]),
+                                                                              ...mapToFirestore(
+                                                                                {
+                                                                                  'favoriteItems': FieldValue.arrayUnion([
+                                                                                    largeDesktopProductsRecord.reference
+                                                                                  ]),
+                                                                                },
+                                                                              ),
                                                                             });
                                                                             setState(() =>
                                                                                 _model.documentRequestCompleter = null);
@@ -1522,9 +1528,13 @@ class _MainHomePageWidgetState extends State<MainHomePageWidget>
                                                                           onPressed:
                                                                               () async {
                                                                             await currentUserReference!.update({
-                                                                              'favoriteItems': FieldValue.arrayRemove([
-                                                                                largeDesktopProductsRecord.reference
-                                                                              ]),
+                                                                              ...mapToFirestore(
+                                                                                {
+                                                                                  'favoriteItems': FieldValue.arrayRemove([
+                                                                                    largeDesktopProductsRecord.reference
+                                                                                  ]),
+                                                                                },
+                                                                              ),
                                                                             });
                                                                             ScaffoldMessenger.of(context).showSnackBar(
                                                                               SnackBar(
