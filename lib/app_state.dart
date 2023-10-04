@@ -64,6 +64,9 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _shippingOptions;
     });
+    _safeInit(() {
+      _token = prefs.getString('ff_token') ?? _token;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -237,6 +240,13 @@ class FFAppState extends ChangeNotifier {
     _shippingOptions.insert(_index, _value);
     prefs.setStringList('ff_shippingOptions',
         _shippingOptions.map((x) => x.serialize()).toList());
+  }
+
+  String _token = '';
+  String get token => _token;
+  set token(String _value) {
+    _token = _value;
+    prefs.setString('ff_token', _value);
   }
 
   final _productListManager = StreamRequestManager<List<ProductsRecord>>();

@@ -91,6 +91,31 @@ class DummycategoriesCall {
       );
 }
 
+class LoginCall {
+  static Future<ApiCallResponse> call({
+    String? username = '',
+    String? password = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'login',
+      apiUrl: 'https://test1-woocommerce.brodos.shop/wp-json/jwt-auth/v1/token',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'username': username,
+        'password': password,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

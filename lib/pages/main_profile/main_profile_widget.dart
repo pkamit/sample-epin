@@ -703,7 +703,7 @@ class _MainProfileWidgetState extends State<MainProfileWidget> {
                                                       .clearRedirectLocation();
 
                                                   context.goNamedAuth(
-                                                      'categorylistingdummy',
+                                                      'loginPage',
                                                       context.mounted);
                                                 },
                                                 text: 'LOG OUT',

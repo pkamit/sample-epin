@@ -510,8 +510,7 @@ class _DropdownAccountWidgetState extends State<DropdownAccountWidget>
                       await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
 
-                      context.goNamedAuth(
-                          'categorylistingdummy', context.mounted);
+                      context.goNamedAuth('loginPage', context.mounted);
                     },
                     child: AnimatedContainer(
                       duration: Duration(milliseconds: 150),

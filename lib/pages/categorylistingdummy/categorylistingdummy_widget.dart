@@ -49,6 +49,7 @@ class _CategorylistingdummyWidgetState extends State<CategorylistingdummyWidget>
     _model.textController1 ??= TextEditingController();
     _model.textController2 ??= TextEditingController(text: 'smartphones');
     _model.textController3 ??= TextEditingController(text: '#6F61EF');
+    _model.textController4 ??= TextEditingController(text: FFAppState().token);
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -212,6 +213,37 @@ class _CategorylistingdummyWidgetState extends State<CategorylistingdummyWidget>
                                     ),
                                   ),
                                 ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 20.0, 25.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  FlutterFlowIconButton(
+                                    borderColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    fillColor:
+                                        FlutterFlowTheme.of(context).accent1,
+                                    icon: Icon(
+                                      Icons.logout,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () async {
+                                      setState(() {
+                                        FFAppState().token = '';
+                                      });
+
+                                      context.pushNamed('loginPage');
+                                    },
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -720,6 +752,55 @@ class _CategorylistingdummyWidgetState extends State<CategorylistingdummyWidget>
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
                                 validator: _model.textController3Validator
+                                    .asValidator(context),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: TextFormField(
+                                controller: _model.textController4,
+                                autofocus: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Label here...',
+                                  labelStyle:
+                                      FlutterFlowTheme.of(context).labelMedium,
+                                  hintStyle:
+                                      FlutterFlowTheme.of(context).labelMedium,
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                validator: _model.textController4Validator
                                     .asValidator(context),
                               ),
                             ),

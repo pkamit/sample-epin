@@ -1,6 +1,5 @@
-import 'package:shop_epin/imagegallery/imagegallery_widget.dart';
-
 import '/components/gradient_button/gradient_button_widget.dart';
+import '/components/imagepageview/imagepageview_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_count_controller.dart';
@@ -348,18 +347,25 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                                     .start,
                                                             children: [
                                                               Expanded(
-                                                                child: Hero(
-                                                                  tag:
-                                                                      'productMain',
-                                                                  transitionOnUserGestures:
-                                                                      true,
+                                                                child:
+                                                                    Container(
+                                                                  width: 100.0,
+                                                                  height: 366.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
                                                                   child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10.0),
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .imagepageviewModel,
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
                                                                     child:
-                                                                        ImagegalleryWidget(),
+                                                                        ImagepageviewWidget(),
                                                                   ),
                                                                 ),
                                                               ),

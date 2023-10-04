@@ -1,4 +1,5 @@
 import '/components/gradient_button/gradient_button_widget.dart';
+import '/components/imagepageview/imagepageview_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_count_controller.dart';
@@ -22,6 +23,8 @@ class ProductDetailsCopyModel
   final unfocusNode = FocusNode();
   // Model for gradientButton component.
   late GradientButtonModel gradientButtonModel;
+  // Model for imagepageview component.
+  late ImagepageviewModel imagepageviewModel;
   // State field(s) for ChoiceChips widget.
   String? choiceChipsValue1;
   FormFieldController<List<String>>? choiceChipsValueController1;
@@ -41,11 +44,13 @@ class ProductDetailsCopyModel
 
   void initState(BuildContext context) {
     gradientButtonModel = createModel(context, () => GradientButtonModel());
+    imagepageviewModel = createModel(context, () => ImagepageviewModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
     gradientButtonModel.dispose();
+    imagepageviewModel.dispose();
   }
 
   /// Action blocks are added here.
