@@ -348,11 +348,7 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                               Expanded(
                                                                 child: Hero(
                                                                   tag:
-                                                                      getJsonField(
-                                                                    widget
-                                                                        .productRef,
-                                                                    r'''$.images[0]''',
-                                                                  ),
+                                                                      'productMain',
                                                                   transitionOnUserGestures:
                                                                       true,
                                                                   child:
@@ -362,11 +358,7 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                                             10.0),
                                                                     child: Image
                                                                         .network(
-                                                                      getJsonField(
-                                                                        widget
-                                                                            .productRef,
-                                                                        r'''$.images[0]''',
-                                                                      ),
+                                                                      'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/adf87c27-e670-4e75-86fd-31c1241b9ed6/air-max-90-mens-shoes-6n3vKB.png',
                                                                       width:
                                                                           400.0,
                                                                       height:
@@ -406,10 +398,7 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Text(
-                                                                              getJsonField(
-                                                                                widget.productRef,
-                                                                                r'''$.title''',
-                                                                              ).toString(),
+                                                                              'Sport Tennis Shoe',
                                                                               style: FlutterFlowTheme.of(context).headlineLarge,
                                                                             ),
                                                                           ],
@@ -422,13 +411,7 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                                               12.0),
                                                                           child:
                                                                               Text(
-                                                                            valueOrDefault<String>(
-                                                                              getJsonField(
-                                                                                widget.productRef,
-                                                                                r'''$.price''',
-                                                                              ).toString(),
-                                                                              '0.00',
-                                                                            ),
+                                                                            '\$150.00',
                                                                             style: FlutterFlowTheme.of(context).titleLarge.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                                                                                   color: FlutterFlowTheme.of(context).primary,
@@ -444,13 +427,7 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                                               0.0),
                                                                           child:
                                                                               Text(
-                                                                            valueOrDefault<String>(
-                                                                              getJsonField(
-                                                                                widget.productRef,
-                                                                                r'''$.category''',
-                                                                              ).toString(),
-                                                                              'It\'s the perfect mix: a splash of heritage Nike running and a whole lot of comfort. The fast-paced look also includes a revamped Air unit window to energize your every step.',
-                                                                            ),
+                                                                            'It\'s the perfect mix: a splash of heritage Nike running and a whole lot of comfort. The fast-paced look also includes a revamped Air unit window to energize your every step.',
                                                                             style:
                                                                                 FlutterFlowTheme.of(context).labelLarge,
                                                                           ),
@@ -618,11 +595,7 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                                       .start,
                                                               children: [
                                                                 Text(
-                                                                  getJsonField(
-                                                                    widget
-                                                                        .productRef,
-                                                                    r'''$.title''',
-                                                                  ).toString(),
+                                                                  'Sport Tennis Shoe',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .headlineLarge,
@@ -635,15 +608,7 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                                           0.0,
                                                                           12.0),
                                                                   child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      getJsonField(
-                                                                        widget
-                                                                            .productRef,
-                                                                        r'''$.price''',
-                                                                      ).toString(),
-                                                                      '0.00',
-                                                                    ),
+                                                                    '\$150.00',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .titleLarge
@@ -665,15 +630,7 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                                           24.0,
                                                                           0.0),
                                                                   child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      getJsonField(
-                                                                        widget
-                                                                            .productRef,
-                                                                        r'''$.category''',
-                                                                      ).toString(),
-                                                                      'It\'s the perfect mix: a splash of heritage Nike running and a whole lot of comfort. The fast-paced look also includes a revamped Air unit window to energize your every step.',
-                                                                    ),
+                                                                    'It\'s the perfect mix: a splash of heritage Nike running and a whole lot of comfort. The fast-paced look also includes a revamped Air unit window to energize your every step.',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .labelLarge,

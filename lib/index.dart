@@ -36,3 +36,4 @@ export '/pages/categorylistingdummy/categorylistingdummy_widget.dart'
     show CategorylistingdummyWidget;
 export '/pages/sub_pages/product_details_copy/product_details_copy_widget.dart'
     show ProductDetailsCopyWidget;
+export '/imagegallery/imagegallery_widget.dart' show ImagegalleryWidget;

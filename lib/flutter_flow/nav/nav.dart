@@ -222,6 +222,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ProductDetailsCopyWidget(
             productRef: params.getParam('productRef', ParamType.JSON),
           ),
+        ),
+        FFRoute(
+          name: 'imagegallery',
+          path: '/imagegallery',
+          builder: (context, params) => ImagegalleryWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
