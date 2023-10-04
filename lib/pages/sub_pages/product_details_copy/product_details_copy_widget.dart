@@ -1,3 +1,5 @@
+import 'package:shop_epin/imagegallery/imagegallery_widget.dart';
+
 import '/components/gradient_button/gradient_button_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -356,16 +358,8 @@ class _ProductDetailsCopyWidgetState extends State<ProductDetailsCopyWidget>
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             10.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/adf87c27-e670-4e75-86fd-31c1241b9ed6/air-max-90-mens-shoes-6n3vKB.png',
-                                                                      width:
-                                                                          400.0,
-                                                                      height:
-                                                                          400.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
+                                                                    child:
+                                                                        ImagegalleryWidget(),
                                                                   ),
                                                                 ),
                                                               ),
